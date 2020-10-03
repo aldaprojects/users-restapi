@@ -1,10 +1,9 @@
 package main
 
 import (
+	"github.com/aldaprojects/basic-restapi/services"
 	"log"
 	"net/http"
-
-	"github.com/aldaprojects/basic-restapi/queries"
 )
 
 func HandleUser(w http.ResponseWriter, r *http.Request) {
@@ -12,16 +11,16 @@ func HandleUser(w http.ResponseWriter, r *http.Request) {
 
 	switch r.Method {
 	case http.MethodGet:
-		queries.GetUser(w, r)
+		services.GetUser(w, r)
 
 	case http.MethodPost:
-		queries.PostUser(w, r)
+		services.PostUser(w, r)
 
 	case http.MethodDelete:
-		queries.DeleteUser(w, r)
+		services.DeleteUser(w, r)
 
 	case http.MethodPut:
-		queries.PutUser(w, r)
+		services.PutUser(w, r)
 	}
 }
 
