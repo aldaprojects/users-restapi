@@ -1,21 +1,24 @@
-package queries
+package services
 
 import (
 	"encoding/json"
+	"github.com/aldaprojects/basic-restapi/db"
 	"io/ioutil"
 	"net/http"
 	"strconv"
 
-	"github.com/aldaprojects/basic-restapi/db"
 	"github.com/aldaprojects/basic-restapi/models"
 	"github.com/aldaprojects/basic-restapi/response"
 )
 
-func GetUser(w http.ResponseWriter, r *http.Request)  {
+// GetUser gets a particular user from the database.
+// Request must have an 'id' query param.
+// A successful call sends to client a json with the format response and the user
+func GetUser(w http.ResponseWriter, r *http.Request) {
 
 	var (
-		resp = response.Response{}
-		userDB = db.DB{}
+		resp   = response.Response{}
+		userDB = db.UserDB{}
 	)
 
 	ids, ok := r.URL.Query()["id"]
@@ -39,10 +42,13 @@ func GetUser(w http.ResponseWriter, r *http.Request)  {
 	resp.StatusOk(w)
 }
 
-func PostUser(w http.ResponseWriter, r *http.Request)  {
+// PostUser creates a new user. Request must have a json into the body.
+// The json must contain key username and key password.
+// A successful call post a user into the database
+func PostUser(w http.ResponseWriter, r *http.Request) {
 	var (
-		resp = response.Response{}
-		userDB = db.DB{}
+		resp   = response.Response{}
+		userDB = db.UserDB{}
 	)
 
 	body, _ := ioutil.ReadAll(r.Body)
@@ -78,10 +84,13 @@ func PostUser(w http.ResponseWriter, r *http.Request)  {
 	resp.StatusOk(w)
 }
 
-func DeleteUser(w http.ResponseWriter, r *http.Request)  {
+// DeleteUser deletes a particular user from the database
+// Request must have an 'id' query param
+// A successful call remove a user from the database
+func DeleteUser(w http.ResponseWriter, r *http.Request) {
 	var (
-		resp = response.Response{}
-		userDB = db.DB{}
+		resp   = response.Response{}
+		userDB = db.UserDB{}
 	)
 
 	ids, ok := r.URL.Query()["id"]
@@ -104,10 +113,13 @@ func DeleteUser(w http.ResponseWriter, r *http.Request)  {
 	resp.StatusOk(w)
 }
 
-func PutUser(w http.ResponseWriter, r *http.Request)  {
+// PutUser modify a user that already exists.
+// Request must have an 'id' query param and a json into the body
+// with key password and key username. A successful call modify a user from the database
+func PutUser(w http.ResponseWriter, r *http.Request) {
 	var (
-		resp = response.Response{}
-		userDB = db.DB{}
+		resp   = response.Response{}
+		userDB = db.UserDB{}
 	)
 
 	ids, ok := r.URL.Query()["id"]
@@ -146,4 +158,3 @@ func PutUser(w http.ResponseWriter, r *http.Request)  {
 
 	resp.StatusOk(w)
 }
-
