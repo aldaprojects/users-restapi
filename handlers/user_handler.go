@@ -8,7 +8,6 @@ import (
 	"strconv"
 
 	"github.com/aldaprojects/basic-restapi/models"
-	"github.com/aldaprojects/basic-restapi/response"
 )
 
 // GetUser gets a particular user from the database.
@@ -17,7 +16,7 @@ import (
 func GetUser(w http.ResponseWriter, r *http.Request) {
 
 	var (
-		resp   = response.Response{}
+		resp   = models.Response{}
 		userDB = db.UserDB{}
 	)
 
@@ -47,7 +46,7 @@ func GetUser(w http.ResponseWriter, r *http.Request) {
 // A successful call post a user into the database
 func PostUser(w http.ResponseWriter, r *http.Request) {
 	var (
-		resp   = response.Response{}
+		resp   = models.Response{}
 		userDB = db.UserDB{}
 	)
 
@@ -89,7 +88,7 @@ func PostUser(w http.ResponseWriter, r *http.Request) {
 // A successful call remove a user from the database
 func DeleteUser(w http.ResponseWriter, r *http.Request) {
 	var (
-		resp   = response.Response{}
+		resp   = models.Response{}
 		userDB = db.UserDB{}
 	)
 
@@ -118,7 +117,7 @@ func DeleteUser(w http.ResponseWriter, r *http.Request) {
 // with key password and key username. A successful call modify a user from the database
 func PutUser(w http.ResponseWriter, r *http.Request) {
 	var (
-		resp   = response.Response{}
+		resp   = models.Response{}
 		userDB = db.UserDB{}
 	)
 

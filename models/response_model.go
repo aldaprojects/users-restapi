@@ -1,18 +1,16 @@
-package response
+package models
 
 import (
 	"encoding/json"
 	"fmt"
 	"net/http"
-
-	"github.com/aldaprojects/basic-restapi/models"
 )
 
 // Response is a format for ResponseWriter. Create just one object.
 type Response struct {
-	Body  models.User `json:"body"`
-	Error string      `json:"error"`
-	Ok    bool        `json:"ok"`
+	Body  User   `json:"body"`
+	Error string `json:"error"`
+	Ok    bool   `json:"ok"`
 }
 
 // write writes into ResponseWriter interface
